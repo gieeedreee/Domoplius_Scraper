@@ -81,6 +81,6 @@ class Scraper:
         """
         all_information = self.collect_information(self.get_page_number(number_of_items))
         pd.DataFrame(all_information).to_csv("../scraped_information.csv",
-                                             header=['Title', 'Area of flat', 'Room', 'Floor', 'year', 'Price'],
+                                             header=['Title', 'Area', 'Room', 'Floor', 'Year', 'Price'],
                                              index=True)
         return None
