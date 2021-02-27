@@ -30,7 +30,7 @@ class Scraper:
 
     def get_page_number(self, number_of_items: int) -> int:
         """
-        Returns the number of pages of the number of items required to scrape. Round up the page number to bigger side.
+        Returns the number of pages according to required number of samples. Round up the page number to bigger side.
         :param number_of_items: number of items required to scrape.
         :return: number of pages
         """
@@ -54,12 +54,9 @@ class Scraper:
                 listings = soup.find_all("div", {"class": ["cntnt-box-fixed"]})
 
                 for item in listings:
-                    area.extend(
-                        [value.text.strip(" m²") for value in item.find_all("span", {"title": "Buto plotas (kv. m)"})])
-                    room.extend(
-                        [value.text.strip(" kamb.") for value in item.find_all("span", {"title": "Kambarių skaičius"})])
-                    year.extend(
-                        [value.text.strip(" m.") for value in item.find_all("span", {"title": "Statybos metai"})])
+                    area.extend([value.text.strip(" m²") for value in item.find_all("span", {"title": "Buto plotas (kv. m)"})])
+                    room.extend([value.text.strip(" kamb.") for value in item.find_all("span", {"title": "Kambarių skaičius"})])
+                    year.extend([value.text.strip(" m.") for value in item.find_all("span", {"title": "Statybos metai"})])
                     floor.extend([value.text.strip(" a.") for value in item.find_all("span", {"title": "Aukštas"})])
                     title.extend([value.text.strip(" ") for value in item.find_all("h2", {"class": "title-list"})])
                     price.extend([value.text.strip("Kaina: ") for value in item.find_all("p", {"class": "fl"})])
