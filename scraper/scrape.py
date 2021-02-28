@@ -79,7 +79,7 @@ class Scraper:
         :param number_of_items: number of items required to scrape.
         :return: csv file.
         """
-        all_information = self.collect_information(self.get_page_number(number_of_items))
+        all_information = self.collect_information(number_of_items)
         pd.DataFrame(all_information).to_csv("../scraped_information.csv",
                                              header=['Title', 'Area', 'Room', 'Floor', 'Year', 'Price'],
                                              index=False)
