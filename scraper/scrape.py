@@ -56,7 +56,7 @@ class Scraper:
                 for item in listings:
                     area.extend([value.text.strip(" m²") for value in item.find_all("span", {"title": "Buto plotas (kv. m)"})])
                     room.extend([value.text.strip(" kamb.") for value in item.find_all("span", {"title": "Kambarių skaičius"})])
-                    year.extend([value.text.strip(" m.") for value in item.find_all("span", {"title": "Statybos metai"})])
+                    year.extend(int([value.text.strip(" m.") for value in item.find_all("span", {"title": "Statybos metai"})]))
                     floor.extend([value.text.strip(" a.") for value in item.find_all("span", {"title": "Aukštas"})])
                     title.extend([value.text.strip(" ") for value in item.find_all("h2", {"class": "title-list"})])
                     price.extend([value.text.strip("Kaina: ") for value in item.find_all("p", {"class": "fl"})])
